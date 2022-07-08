@@ -2,13 +2,13 @@ function computerPlay () {
     let randomNum = Math.random();
     
     if (randomNum <= 0.33) {
-        return('Rock');
+        return('rock');
     }
     else if (randomNum > 0.33 && randomNum <= 0.66) {
-        return('Paper');
+        return('paper');
     }
     else {
-        return ('Scissors')
+        return ('scissors')
     }
 }
 
@@ -26,3 +26,16 @@ function playerPlay () {
         return playerSelection;
     }
 }
+
+function convert (input) {
+    if (input == ' rock') {
+        return 1;
+    }
+    else if (input == 'paper') {
+        return 2;
+    }
+    else {
+        return 3;
+    }
+}
+
