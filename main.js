@@ -18,23 +18,35 @@ function computerPlay () {
 }
 
 function playerPlay () {
-    let playerSelection = (prompt('Please enter: 1 - rock, 2 - paper or 3 - scissors')).toLowerCase();
+    let playerSelection = (prompt('Please enter: rock, paper or scissors')).toLowerCase();
 
-    if (playerSelection == 1 || playerSelection == 2 || playerSelection == 3) {
+    if (playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors') {
         return playerSelection;
     }
     else {
-        while (playerSelection != 1 || playerSelection != 2 || playerSelection != 3) {
+        while (playerSelection != 'rock' || playerSelection != 'paper' || playerSelection != 'scissors') {
             playerSelection = (prompt('That was an invalid choice, try again!')).toLowerCase();      
-            if (playerSelection == 1 || playerSelection == 2 || playerSelection == 3) break;        
+            if (playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors') break;        
         }    
         return playerSelection;
     }
 }
 
+function convert (input) {
+    if (input == ' rock') {
+        return 1;
+    }
+    else if (input == 'paper') {
+        return 2;
+    }
+    else {
+        return 3;
+    }
+}
+
 function playRound () {
     let computerSelection = computerPlay();
-    let playerSelection = playerPlay();
+    let playerSelection = convert(playerPlay());
     let calculate = (((playerSelection - computerSelection) % 3) + 3) % 3;
 
     switch (calculate) {
