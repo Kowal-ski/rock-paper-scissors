@@ -51,7 +51,7 @@ function playRound () {
 
     switch (calculate) {
         case 0:
-            return ('Its a tie! you got lucky ');
+            return ('Its a tie! you got lucky.');
             break;
         case 1:
             return ('You win, you probably cheated...');
@@ -64,3 +64,35 @@ function playRound () {
             break;
     }
 }
+
+function game() {
+    let computerWins = 0;
+    let playerWins = 0;
+
+    for (let i = 1; i <= 5; i++) {
+        console.log('round ' + i);
+        let currentOutput = playRound();
+        console.log(currentOutput);
+
+        switch (currentOutput) {
+            case 'You win, you probably cheated...':
+                playerWins = playerWins + 1;
+                break;
+            case 'I win! you suck ':
+                computerWins = computerWins + 1;
+                break;
+        }
+    }
+
+    if (playerWins > computerWins) {
+        console.log('You win, I know you cheated tho, but I\'ll let it slide this time.');
+    }
+    else if (computerWins > playerWins) {
+        console.log('I win, wow your terrible at this.');
+    }
+    else {
+        console.log('Lets call it a draw...'); 
+    }
+}
+
+game();
