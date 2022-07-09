@@ -94,5 +94,3 @@ function game() {
         console.log('Lets call it a draw...'); 
     }
 }
-
-game();
