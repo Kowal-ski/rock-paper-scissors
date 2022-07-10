@@ -2,6 +2,7 @@
 //rock = 1
 //paper = 2
 //scissors = 3
+//--------------------------------- game code --------------------------------------
 
 function computerPlay () {
     let randomNum = Math.random();
@@ -95,6 +96,8 @@ function game() {
     }
 }
 
+//--------------------------------- game code --------------------------------------
+
 function scripter(elementID) {
     let typeWriter = document.querySelector(elementID);
     let dataText = typeWriter.getAttribute('data-text');
@@ -128,9 +131,9 @@ async function introductionScript() {
     scripter('#message2');
     await delay(3500);
     scripter('#message3');
-    await delay(3000);
+    await delay(2500);
     const startGameButton = document.querySelector('.chatWrapper button');
-    startGameButton.style.visibility = 'visible';
+    startGameButton.style.opacity = 1;
 }
 
 function throttle(func, timeFrame) {

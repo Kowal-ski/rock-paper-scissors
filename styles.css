@@ -97,17 +97,15 @@ section {
     float: right;
     background: black;
     color: white;
-    border: 1px solid #afa4a4;
     font-weight: bold;
-    margin: 16px;
-    font-size: 1rem;
-    min-width: 100px;
+    font-size: 16px;
+    margin: 25px 0px ;
     width: 150px;
+    height: 40px;
     text-align: center;
-    padding: .5rem 1rem;
     border: 0;
-    border-radius: 25px;
     border-radius: 10px;
     box-shadow: 0 16px 32px 0 rgba(102,138,165,0.4);
-    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.1s ease-in;
 }
