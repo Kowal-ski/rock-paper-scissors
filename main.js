@@ -94,3 +94,61 @@ function game() {
         console.log('Lets call it a draw...'); 
     }
 }
+
+function scripter(elementID) {
+    let typeWriter = document.querySelector(elementID);
+    let dataText = typeWriter.getAttribute('data-text');
+
+    let count = 0;  
+    let dataTextLength = dataText.length;
+ 
+    setText();
+
+    function setText() {
+        setTimeout(() => {
+            typeWriter.textContent += dataText.charAt(count);
+            count++;
+            if (count <= dataTextLength) {
+                setText();
+            } 
+        }, 30);
+    }
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+async function introductionScript() {
+    // const elements = [...document.querySelectorAll('.chatWrapper *[id]')];
+    // let arr = elements.map(({ id }) => id);
+    await delay(500);
+    scripter('#message');
+    await delay(6500);
+    scripter('#message2');
+    await delay(3500);
+    scripter('#message3');
+    await delay(3000);
+    const startGameButton = document.querySelector('.chatWrapper button');
+    startGameButton.style.visibility = 'visible';
+}
+
+function throttle(func, timeFrame) {
+    var lastTime = 0;
+    return function (...args) {
+        var now = new Date();
+        if (now - lastTime >= timeFrame) {
+            func(...args);
+            lastTime = now;
+        }
+    };
+}
+
+let introTriggered = false;
+const container = document.querySelector('.container');
+container.addEventListener('scroll', throttle(() => {
+    while (introTriggered == false) {
+        introductionScript();
+        introTriggered = true;
+    }
+}, 1000))

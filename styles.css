@@ -26,12 +26,11 @@
     font-style: italic;
 }
 
-
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'SpaceMono';
+    box-sizing: border-box;
 }
 
 .container {
@@ -43,8 +42,72 @@
 section {
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     scroll-snap-align: start;
+}
+
+.one .left{
+    height: 100vh;
+    width: 100vh;
+    flex-direction: column;
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    padding-left: 10%;
+}
+
+.left h1 {
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+.left p {
+    font-size: 16px;
+    margin-bottom: 64px;
+}
+
+.left label {
+    background-color: black;
+    color: white;
+    width: 250px;
+    padding: 16px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 16px 32px 0 rgba(102,138,165,0.9);
+}
+
+.one .right {
+    height: 100vh;
+    width: 100vh;
+    flex: auto;
+}
+
+.two {
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-bottom: 5%;
+}
+
+.chatWrapper p {
+    margin: 16px;
+}
+
+.chatWrapper button {
+    float: right;
+    background: black;
+    color: white;
+    border: 1px solid #afa4a4;
+    font-weight: bold;
+    margin: 16px;
+    font-size: 1rem;
+    min-width: 100px;
+    width: 150px;
+    text-align: center;
+    padding: .5rem 1rem;
+    border: 0;
+    border-radius: 25px;
+    border-radius: 10px;
+    box-shadow: 0 16px 32px 0 rgba(102,138,165,0.4);
+    visibility: hidden;
 }
