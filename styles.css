@@ -128,6 +128,7 @@ section {
     box-shadow: 0 10px 32px 0 rgba(102,138,165,0.4);
     opacity: 0;
     transition: opacity 0.1s ease-in;
+    transition: 0.2 ease-out;
 }
 
 .scroll-container button:hover {
@@ -135,5 +136,5 @@ section {
     background-color: white;
     color: black;
     transition: 0.2s ease-in-out;
-    cursor: url('./cursor/main-filled.svg'), auto;
+    cursor: none;
 }

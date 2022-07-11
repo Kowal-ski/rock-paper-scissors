@@ -66,14 +66,25 @@ function playRound () {
     }
 }
 
-function game() {
+async function game() {
     let computerWins = 0;
     let playerWins = 0;
 
     for (let i = 1; i <= 5; i++) {
-        console.log('round ' + i);
+        let roundNum = 'round ' + i;
+        const roundNumPara = document.createElement('p');
+        roundNumPara.dataText = roundNum;
+        document.querySelector('.game-container').appendChild(roundNumPara);
+        liveScripter(roundNumPara);
+        await delay(1000);
+        
+
         let currentOutput = playRound();
-        console.log(currentOutput);
+        const currentOutputPara = document.createElement('p');
+        currentOutputPara.dataText = currentOutput;
+        document.querySelector('.game-container').appendChild(currentOutputPara);
+        liveScripter(currentOutputPara);
+        await delay(1000);
 
         switch (currentOutput) {
             case 'You win, you probably cheated...':
@@ -85,22 +96,30 @@ function game() {
         }
     }
 
+    let winnerPara = document.createElement('p');
+
     if (playerWins > computerWins) {
-        console.log('You win, I know you cheated tho, but I\'ll let it slide this time.');
+        winnerPara.dataText = 'You win, I know you cheated tho, but I\'ll let it slide this time.';
     }
     else if (computerWins > playerWins) {
-        console.log('I win, wow your terrible at this.');
+        winnerPara.dataText = 'I win, wow your terrible at this.';
     }
     else {
-        console.log('Lets call it a draw...'); 
+        winnerPara.dataText = 'Lets call it a draw...'; 
     }
+
+    document.querySelector('.game-container').appendChild(winnerPara);
+    liveScripter(winnerPara);
+    await delay(1000);
 }
 
 //--------------------------------- game code --------------------------------------
 
 //--------------------------------- utlity code ------------------------------------
-
-
+window.setInterval(function() {
+    var elem = document.querySelector('.scroll-container');
+    elem.scrollTop = elem.scrollHeight;
+  }, 100);
 //--------------------------------- utlity code ------------------------------------
 
 function scripter(elementID) {
@@ -122,6 +141,25 @@ function scripter(elementID) {
         }, 30);
     }
 }
+
+function liveScripter(typeWriter) {
+    let dataText = typeWriter.dataText
+    let count = 0;  
+    let dataTextLength = dataText.length;
+ 
+    setText();
+
+    function setText() {
+        setTimeout(() => {
+            typeWriter.textContent += dataText.charAt(count);
+            count++;
+            if (count <= dataTextLength) {
+                setText();
+            } 
+        }, 30);
+    }
+}
+
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -160,3 +198,7 @@ container.addEventListener('scroll', throttle(() => {
         introTriggered = true;
     }
 }, 1000))
+
+document.getElementById('start-game-btn').addEventListener('click', function(e) {
+    game();
+});
