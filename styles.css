@@ -33,6 +33,10 @@
     box-sizing: border-box;
 }
 
+body {
+    cursor: url('./cursor/main.svg'), auto;
+}
+
 .container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
@@ -47,7 +51,7 @@ section {
     scroll-snap-align: start;
 }
 
-.one .left{
+.hero-section .left{
     height: 100vh;
     width: 100vh;
     flex-direction: column;
@@ -75,37 +79,61 @@ section {
     text-align: center;
     font-weight: bold;
     box-shadow: 0 16px 32px 0 rgba(102,138,165,0.9);
+    cursor: url('./cursor/main-filled-light.svg'), auto;
 }
 
-.one .right {
+.hero-section .right {
     height: 100vh;
     width: 100vh;
     flex: auto;
 }
 
-.two {
-    padding-left: 30%;
-    padding-right: 30%;
-    padding-bottom: 5%;
+.chat-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.chatWrapper p {
-    margin: 16px;
+.scroll-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 40px);
+    max-width: 550px;
 }
 
-.chatWrapper button {
-    float: right;
+.scroll-container p {
+    margin: 1rem;
+}
+
+.scroll-container .chat-container {
+    align-self: start;
+    margin-right: 50px;
+}
+
+.scroll-container button {
+    align-self: flex-end;
     background: black;
     color: white;
     font-weight: bold;
     font-size: 16px;
-    margin: 25px 0px ;
+    margin: 25px 25px ;
     width: 150px;
-    height: 40px;
+    min-height: 40px;
     text-align: center;
     border: 0;
     border-radius: 10px;
-    box-shadow: 0 16px 32px 0 rgba(102,138,165,0.4);
+    box-shadow: 0 10px 32px 0 rgba(102,138,165,0.4);
     opacity: 0;
     transition: opacity 0.1s ease-in;
+}
+
+.scroll-container button:hover {
+    border: 3px solid black;
+    background-color: white;
+    color: black;
+    transition: 0.2s ease-in-out;
+    cursor: url('./cursor/main-filled.svg'), auto;
 }

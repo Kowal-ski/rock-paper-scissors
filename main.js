@@ -98,6 +98,11 @@ function game() {
 
 //--------------------------------- game code --------------------------------------
 
+//--------------------------------- utlity code ------------------------------------
+
+
+//--------------------------------- utlity code ------------------------------------
+
 function scripter(elementID) {
     let typeWriter = document.querySelector(elementID);
     let dataText = typeWriter.getAttribute('data-text');
@@ -131,8 +136,8 @@ async function introductionScript() {
     scripter('#message2');
     await delay(3500);
     scripter('#message3');
-    await delay(2500);
-    const startGameButton = document.querySelector('.chatWrapper button');
+    await delay(2200);
+    const startGameButton = document.querySelector('.scroll-container button');
     startGameButton.style.opacity = 1;
 }
 
