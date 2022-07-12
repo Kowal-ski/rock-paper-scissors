@@ -102,8 +102,14 @@ section {
     flex-direction: column;
     width: calc(100% - 40px);
     max-width: 550px;
+    scrollbar-width: none;
+    -ms-overflow-style: none
 }
 
+.scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+  
 .scroll-container p {
     margin: 1rem;
 }

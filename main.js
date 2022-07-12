@@ -166,7 +166,7 @@ async function playGame() {
         }
 
         liveScripter(newLine);
-        await delay(2000);
+        await delay(1800);
         document.getElementById('reset-game-btn').style.opacity = 1;
     }
 }
@@ -197,12 +197,13 @@ document.getElementById('start-game-btn').addEventListener('click', function(e) 
     lockButton(document.getElementById('start-game-btn'));
 });
 
-document.getElementById('reset-game-btn').addEventListener('click', () => {
+document.getElementById('reset-game-btn').addEventListener('click', async () => {
     rounds = 0;
     computerWins = 0;
     playerWins = 0;
-    cleanUp();
     document.getElementById('reset-game-btn').style.opacity = 0;
+    await delay(330);
+    cleanUp();
     playGame();
 })
 
