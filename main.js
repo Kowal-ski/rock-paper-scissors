@@ -11,15 +11,21 @@ async function playerPlay() {
     rpsButtonContainer.style.display = 'flex';
     rpsButtonContainer.style.justifyContent = 'flex-end';
     rpsButtonContainer.style.marginRight = '5%';
-    rpsButtonContainer.style.gap = '8px';
+    rpsButtonContainer.style.gap = '10px';
 
     const rockBtn = document.createElement('button');
     rockBtn.textContent = 'rock';
     rockBtn.setAttribute('id', 'rockChoiceBtn');
-    rockBtn.addEventListener('click', () => {
+    rockBtn.addEventListener('click', async () => {
         while (buttonPressed == false) {
             playRound('rock');
             buttonPressed = true;
+            await delay(33);
+            lockButton(rockBtn);
+            await delay(66);
+            lockButton(paperBtn);
+            await delay(99);
+            lockButton(scissorsBtn);
         }
     })
     rpsButtonContainer.appendChild(rockBtn);
@@ -27,10 +33,15 @@ async function playerPlay() {
     const paperBtn = document.createElement('button');
     paperBtn.textContent = 'paper';
     paperBtn.setAttribute('id', 'paperChoiceBtn');
-    paperBtn.addEventListener('click', () => {
+    paperBtn.addEventListener('click', async () => {
         while (buttonPressed == false) {
             playRound('paper');
             buttonPressed = true;
+            await delay(33);
+            lockButton(paperBtn);
+            await delay(66);
+            lockButton(rockBtn);
+            lockButton(scissorsBtn);
         }
     })
     rpsButtonContainer.appendChild(paperBtn);
@@ -38,10 +49,16 @@ async function playerPlay() {
     const scissorsBtn = document.createElement('button');
     scissorsBtn.textContent = 'scissors';
     scissorsBtn.setAttribute('id', 'scissorsChoiceBtn');
-    scissorsBtn.addEventListener('click', () => {
+    scissorsBtn.addEventListener('click', async () => {
         while (buttonPressed == false) {
             playRound('scissors');
             buttonPressed = true;
+            await delay(33);
+            lockButton(scissorsBtn);
+            await delay(66);
+            lockButton(paperBtn);
+            await delay(99);
+            lockButton(rockBtn);
         }
     })
     rpsButtonContainer.appendChild(scissorsBtn);
@@ -96,7 +113,7 @@ async function playRound (playerChoice) {
     switch (calculate) {
         case 0:
             rounds ++;
-            newLine.dataText = 'Its a tie! you got lucky.';
+            newLine.dataText = '> Its a tie! you got lucky.';
             liveScripter(newLine);
             await delay(1000);
             playGame();
@@ -104,7 +121,7 @@ async function playRound (playerChoice) {
         case 1:
             rounds ++;
             playerWins ++;
-            newLine.dataText = 'You win, you probably cheated...';
+            newLine.dataText = '> You win, you probably cheated...';
             liveScripter(newLine);
             await delay(1000);
             playGame();
@@ -112,7 +129,7 @@ async function playRound (playerChoice) {
         case 2:
             rounds ++;
             computerWins ++;
-            newLine.dataText = 'I win! you suck';
+            newLine.dataText = '> I win! you suck';
             liveScripter(newLine);
             await delay(1000);
             playGame();
@@ -127,7 +144,7 @@ async function playGame() {
     if (rounds != 5) {
         const newLine = document.createElement('p');
         newLine.setAttribute('id', 'currentRoundNum');
-        newLine.dataText = 'round ' + (rounds + 1);
+        newLine.dataText = '> round ' + (rounds + 1);
         document.querySelector('.game-container').appendChild(newLine);
         liveScripter(newLine);
         await delay(1000);
@@ -139,13 +156,13 @@ async function playGame() {
         document.querySelector('.game-container').appendChild(newLine);
 
         if (playerWins > computerWins) {
-            newLine.dataText = ('You win, I know you cheated tho, but I\'ll let it slide this time.');
+            newLine.dataText = ('> You win, I know you cheated tho, but I\'ll let it slide this time.');
         }
         else if (computerWins > playerWins) {
-            newLine.dataText = ('I win, wow your terrible at this.');
+            newLine.dataText = ('> I win, wow your terrible at this.');
         }
         else {
-            newLine.dataText = ('Lets call it a draw...'); 
+            newLine.dataText = ('> Lets call it a draw...'); 
         }
 
         liveScripter(newLine);
@@ -177,6 +194,7 @@ function cleanUp() {
 
 document.getElementById('start-game-btn').addEventListener('click', function(e) {
     playGame();
+    lockButton(document.getElementById('start-game-btn'));
 });
 
 document.getElementById('reset-game-btn').addEventListener('click', () => {
@@ -249,6 +267,14 @@ async function introductionScript() {
     await delay(2200);
     const startGameButton = document.querySelector('.scroll-container button');
     startGameButton.style.opacity = 1;
+}
+
+function lockButton(button) {
+    button.style.background = 'white';
+    button.style.color = '#668aa566';
+    button.style.boxShadow = "0 5px 16px 0 #668aa566";
+    button.style.transition = 'all 0.33s ease-in-out'
+    button.style.pointerEvents = 'none';
 }
 
 function throttle(func, timeFrame) {
