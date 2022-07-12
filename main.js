@@ -2,7 +2,6 @@
 //rock = 1
 //paper = 2
 //scissors = 3
-//--------------------------------- game code --------------------------------------
 
 async function playerPlay() {
     let buttonPressed = false;
@@ -113,7 +112,7 @@ async function playRound (playerChoice) {
     switch (calculate) {
         case 0:
             rounds ++;
-            newLine.dataText = '> Its a tie! you got lucky.';
+            newLine.dataText = '> ' + randomResponse(0);
             liveScripter(newLine);
             await delay(1000);
             playGame();
@@ -121,17 +120,17 @@ async function playRound (playerChoice) {
         case 1:
             rounds ++;
             playerWins ++;
-            newLine.dataText = '> You win, you probably cheated...';
+            newLine.dataText = '> ' + randomResponse(1);
             liveScripter(newLine);
-            await delay(1000);
+            await delay(4000);
             playGame();
             break;
         case 2:
             rounds ++;
             computerWins ++;
-            newLine.dataText = '> I win! you suck';
+            newLine.dataText = '> ' + randomResponse(2);
             liveScripter(newLine);
-            await delay(1000);
+            await delay(4000);
             playGame();
             break;
         default:
@@ -192,6 +191,41 @@ function cleanUp() {
     }
 }
 
+function randomResponse(outcome) {
+    //0 = tie
+    //1 = player wins
+    //2 = computer wins
+
+    let playerWinsResponseArray = [
+        'looks like anything is possible, you win this round.',
+        'Row, row, row your boat gently down a raging waterfall, you win.',
+        'Okay, I\'m putting you on my hitlist. You win.',
+        'You should come with a warning label "cheats at rock paper scissors", you win.',
+        'Who came up with the expression “ it\'s raining cats and dogs”? How is it relevant to the weather? Btw you win.',
+        'This is getting very boring, I\'m basically lettting you win.'
+    ]
+
+    let computerWinsResponseArray = [
+        'If I got paid to play rock paper scissors against you for a living, i\'d be making money hand of fist. I win this round.',
+        'I gave out all my trophies a while ago, but here\'s a participation award. I win this round.',
+        'Earth has a population of over 7 billion, and I had to meet the biggest loser imaginable. I win this round. ',
+        'The truth will set you free. You suck. Ok, you\'re free to go. I win this round.',
+        'Imagine losing to a computer...I win.',
+        'You\'re lucky intelligence isn\'t measured in negative numbers lol, I win',
+        'I don\'t have any trash to take out today, but I volunteer you as tribute, I win'
+    ]
+
+    if (outcome == 1) {
+        return playerWinsResponseArray[Math.floor(Math.random()*playerWinsResponseArray.length)];
+    }
+    else if (outcome == 2) {
+        return computerWinsResponseArray[Math.floor(Math.random()*computerWinsResponseArray.length)];
+    }
+    else {
+        return 'its a tie!';
+    }
+}
+
 document.getElementById('start-game-btn').addEventListener('click', function(e) {
     playGame();
     lockButton(document.getElementById('start-game-btn'));
@@ -206,8 +240,6 @@ document.getElementById('reset-game-btn').addEventListener('click', async () => 
     cleanUp();
     playGame();
 })
-
-//--------------------------------- game code --------------------------------------
 
 //--------------------------------- utlity code ------------------------------------
 window.setInterval(function() {
