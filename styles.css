@@ -97,7 +97,7 @@ section {
 .scroll-container {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 65vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     width: calc(100% - 40px);
@@ -113,25 +113,53 @@ section {
     margin-right: 50px;
 }
 
-.scroll-container button {
-    align-self: flex-end;
+.rpsButtonContainer button {
     background: black;
     color: white;
     font-weight: bold;
     font-size: 16px;
-    margin: 25px 25px ;
     width: 150px;
     min-height: 40px;
     text-align: center;
     border: 0;
     border-radius: 10px;
     box-shadow: 0 10px 32px 0 rgba(102,138,165,0.4);
+    margin: 25px 0;
+    width: 120px;
     opacity: 0;
     transition: opacity 0.1s ease-in;
     transition: 0.2 ease-out;
 }
 
-.scroll-container button:hover {
+.rpsButtonContainer button:hover {
+    border: 3px solid black;
+    background-color: white;
+    color: black;
+    transition: 0.2s ease-in-out;
+    cursor: none;
+}
+
+#start-game-btn, #reset-game-btn {
+    background: black;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    width: 150px;
+    min-height: 40px;
+    text-align: center;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 10px 32px 0 rgba(102,138,165,0.4);
+    align-self: flex-end;
+    opacity: 0;
+    margin-right: 5%;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    transition: opacity 0.1s ease-in;
+    transition: 0.2 ease-out;
+}
+
+#start-game-btn:hover, #reset-game-btn:hover {
     border: 3px solid black;
     background-color: white;
     color: black;
